@@ -1,11 +1,11 @@
 const https = require('https');
+const options = process.argv[2]
 
-function getAndPrintHTML(callback) {
-  var options = process.argv[2]
+function getAndPrintHTML(input) {
 
   https.get(options, response => {
 
-      var buffBody ='';
+      var buffBody = '';
       response.setEncoding('utf-8');
 
       response.on('data', data => {
@@ -13,7 +13,7 @@ function getAndPrintHTML(callback) {
       });
 
       response.on('end', () => {
-        callback(buffBody);
+        console.log(buffBody);
       });
     });
   }
